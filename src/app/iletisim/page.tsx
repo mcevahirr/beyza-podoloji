@@ -8,7 +8,7 @@ import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "İletişim ve Randevu",
-  description: "Podolog Beyza Nur Daşdemir iletişim bilgileri, adres, Google Haritalar konumu ve WhatsApp randevu hattı.",
+  description: "Podolog Beyzanur Daşdemir iletişim bilgileri, adres, Google Haritalar konumu ve WhatsApp randevu hattı.",
   path: "/iletisim",
 });
 

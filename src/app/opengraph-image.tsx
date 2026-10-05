@@ -9,11 +9,11 @@ export const contentType = "image/png";
 export default function OpengraphImage() {
   return new ImageResponse(
     (
-      <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "center", padding: 80, background: "linear-gradient(135deg, #e6f4f1 0%, #fbfaf7 55%, #f3ddd3 100%)", color: "#17302d" }}>
-        <div style={{ fontSize: 28, letterSpacing: 6, textTransform: "uppercase", color: "#2f8f83" }}>Podolog · Ayak Sağlığı</div>
-        <div style={{ fontSize: 76, fontWeight: 700, marginTop: 24, lineHeight: 1.1 }}>Beyza Nur Daşdemir</div>
-        <div style={{ fontSize: 36, marginTop: 24, color: "#5b6f6c" }}>Batık tırnak · Nasır · Diyabetik ayak · Medikal pedikür</div>
-        <div style={{ display: "flex", marginTop: 48, fontSize: 30, background: "#2f8f83", color: "#fff", padding: "16px 32px", borderRadius: 999, alignSelf: "flex-start" }}>WhatsApp ile Randevu</div>
+      <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "center", padding: 80, background: "linear-gradient(135deg, #eaf0fb 0%, #fbfcfe 55%, #dce6f7 100%)", color: "#13213f" }}>
+        <div style={{ fontSize: 28, letterSpacing: 6, textTransform: "uppercase", color: "#24438f" }}>Podolog · Ayak Sağlığı</div>
+        <div style={{ fontSize: 76, fontWeight: 700, marginTop: 24, lineHeight: 1.1 }}>Beyzanur Daşdemir</div>
+        <div style={{ fontSize: 36, marginTop: 24, color: "#55627d" }}>Darıca, Kocaeli · Batık tırnak · Nasır · Tırnak mantarı</div>
+        <div style={{ display: "flex", marginTop: 48, fontSize: 30, background: "#24438f", color: "#fff", padding: "16px 32px", borderRadius: 999, alignSelf: "flex-start" }}>WhatsApp ile Randevu</div>
       </div>
     ),
     size,

@@ -19,7 +19,7 @@ export default function KvkkPage() {
         <h2 className="font-display text-xl font-semibold text-ink">İşleme amacı</h2>
         <p>Randevu talebinizin değerlendirilmesi ve sizinle iletişime geçilmesi. Verileriniz pazarlama amacıyla kullanılmaz ve üçüncü kişilerle paylaşılmaz.</p>
         <h2 className="font-display text-xl font-semibold text-ink">Haklarınız</h2>
-        <p>KVKK&apos;nın 11. maddesi uyarınca verilerinize ilişkin bilgi talep etme, düzeltilmesini veya silinmesini isteme haklarına sahipsiniz. Talepleriniz için {site.email} adresine yazabilirsiniz.</p>
+        <p>KVKK&apos;nın 11. maddesi uyarınca verilerinize ilişkin bilgi talep etme, düzeltilmesini veya silinmesini isteme haklarına sahipsiniz. Talepleriniz için {site.email || site.phoneDisplay} üzerinden bize ulaşabilirsiniz.</p>
       </section>
     </>
   );

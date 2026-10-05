@@ -40,7 +40,7 @@ export function AppointmentForm({ defaultService = "" }: { defaultService?: stri
         return;
       }
       const text = [
-        "Merhaba Beyza Hanım, web sitenizden randevu talebi gönderdim.",
+        "Merhaba Beyzanur Hanım, web sitenizden randevu talebi gönderdim.",
         `Ad Soyad: ${payload.name}`,
         `Telefon: ${payload.phone}`,
         payload.service && `Hizmet: ${payload.service}`,

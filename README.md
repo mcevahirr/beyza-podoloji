@@ -1,4 +1,4 @@
-# Podolog Beyza Nur Daşdemir · Klinik Web Sitesi (Demo)
+# Podolog Beyzanur Daşdemir · Klinik Web Sitesi (Demo)
 
 Next.js 16 (App Router) + TypeScript + Tailwind CSS v4 ile hazırlanmış, SEO uyumlu klinik tanıtım sitesi.
 Satış yok; tüm dönüşümler WhatsApp'a yönlenir.

@@ -1,12 +1,12 @@
-import { images } from "./media";
+import { images, type Img } from "./media";
 
 export type Service = {
   slug: string;
   title: string;
   short: string;
   description: string;
-  image: { src: string; alt: string };
-  icon: "nail" | "corn" | "fungus" | "diabetes" | "pedicure" | "heel" | "wart" | "child";
+  image: Img;
+  icon: "nail" | "corn" | "fungus" | "diabetes" | "pedicure" | "heel" | "thick" | "sport";
   body: string[];
   steps: string[];
   faq: { q: string; a: string }[];
@@ -19,7 +19,7 @@ export const services: Service[] = [
     short: "Tırnak teli ve ortonik uygulamalarla ameliyatsız, ağrısız çözüm.",
     description:
       "Batık tırnak (onikokriptozis) için ameliyatsız tırnak teli ve ortonik uygulamaları. Ağrıyı azaltan, tırnağın doğru yönde uzamasını sağlayan podolojik tedavi.",
-    image: images.treatment,
+    image: images.batik,
     icon: "nail",
     body: [
       "Batık tırnak, tırnak kenarının çevre dokuya batmasıyla oluşan; ağrı, kızarıklık ve zaman zaman enfeksiyonla seyreden yaygın bir sorundur. Yanlış tırnak kesimi, dar ayakkabı ve genetik yatkınlık en sık nedenlerdir.",
@@ -37,7 +37,7 @@ export const services: Service[] = [
     short: "Nasır, kallus ve sertleşmelerin güvenli ve hijyenik şekilde temizlenmesi.",
     description:
       "Nasır, kallus ve deri sertleşmelerinin steril aletlerle güvenli temizliği. Basınç noktalarını rahatlatan podolojik nasır tedavisi.",
-    image: images.care,
+    image: images.nasir,
     icon: "corn",
     body: [
       "Nasır ve kallus, ayağın belirli bölgelerine binen tekrarlayan basınç ve sürtünmeye karşı derinin kalınlaşmasıdır. Yürürken ağrıya, hatta duruş bozukluğuna yol açabilir.",
@@ -54,7 +54,7 @@ export const services: Service[] = [
     short: "Mantar enfeksiyonlu tırnaklarda inceltme, temizlik ve düzenli takip.",
     description:
       "Mantarlı tırnaklar (onikomikoz) için podolojik bakım: kalınlaşmış tırnağın inceltilmesi, enfekte dokunun temizlenmesi ve tedavi sürecinin takibi.",
-    image: images.feet,
+    image: images.mantar,
     icon: "fungus",
     body: [
       "Tırnak mantarı tırnakta sararma, kalınlaşma ve kırılganlığa yol açan, bulaşıcı bir enfeksiyondur. Tedavi sabır ve düzenlilik gerektirir.",
@@ -66,12 +66,29 @@ export const services: Service[] = [
     ],
   },
   {
+    slug: "onikogrifoz-bakimi",
+    title: "Onikogrifoz Bakımı",
+    short: "Kalınlaşmış, kıvrılmış ve şekil bozukluğu olan tırnaklarda podolojik bakım.",
+    description:
+      "Onikogrifoz (koç boynuzu tırnak) için podolojik bakım: aşırı kalınlaşmış ve kıvrılmış tırnağın güvenli şekilde inceltilmesi ve şekillendirilmesi.",
+    image: images.onikogrifoz,
+    icon: "thick",
+    body: [
+      "Onikogrifoz, tırnağın aşırı kalınlaşarak koç boynuzu gibi kıvrıldığı bir durumdur. Genellikle ileri yaş, uzun süreli baskı, travma veya bakımsızlıkla ortaya çıkar; ayakkabı giymeyi ve yürümeyi zorlaştırabilir.",
+      "Podolojik bakımda kalınlaşmış tırnak özel frezlerle katman katman inceltilir ve tırnak doğal formuna yakın şekilde düzenlenir. Uygulama ağrısızdır ve düzenli bakımla tırnağın tekrar aşırı kalınlaşması önlenir.",
+    ],
+    steps: ["Tırnak yapısının değerlendirilmesi", "Kalınlaşmış tırnağın frezle inceltilmesi", "Tırnağın şekillendirilmesi", "Düzenli bakım planı"],
+    faq: [
+      { q: "Onikogrifoz bakımı acı verir mi?", a: "Hayır. İnceltme işlemi tırnağın canlı dokusuna ulaşmadan yapıldığı için ağrısızdır." },
+    ],
+  },
+  {
     slug: "diyabetik-ayak-bakimi",
     title: "Diyabetik Ayak Bakımı",
     short: "Diyabetli danışanlar için risk odaklı, özenli ve koruyucu ayak bakımı.",
     description:
       "Diyabet hastalarına özel koruyucu ayak bakımı: tırnak ve nasır bakımı, risk değerlendirmesi ve yara oluşumunu önlemeye yönelik takip.",
-    image: images.exam,
+    image: images.diabetic,
     icon: "diabetes",
     body: [
       "Diyabette sinir hasarı ve dolaşım bozukluğu nedeniyle ayakta oluşan küçük yaralar fark edilmeyebilir ve ciddi sorunlara dönüşebilir. Bu nedenle düzenli profesyonel bakım hayati önem taşır.",
@@ -80,6 +97,23 @@ export const services: Service[] = [
     steps: ["Risk değerlendirmesi", "Güvenli tırnak ve nasır bakımı", "Cilt ve nem bakımı", "Günlük ayak kontrolü eğitimi"],
     faq: [
       { q: "Diyabetliler ne sıklıkla ayak bakımı yaptırmalı?", a: "Risk durumuna göre değişmekle birlikte genellikle 4-6 haftada bir profesyonel bakım önerilir." },
+    ],
+  },
+  {
+    slug: "sporcu-ayak-bakimi",
+    title: "Sporcularda Ayak Bakımı",
+    short: "Koşu ve antrenmanın ayakta bıraktığı nasır, kalınlaşma ve tırnak sorunlarına bakım.",
+    description:
+      "Sporculara özel podolojik ayak bakımı: kalınlaşma, renk değişimi, tırnakta ayrılma, batma ve hassasiyet gibi sorunların değerlendirilmesi ve bakımı.",
+    image: images.sporcu,
+    icon: "sport",
+    body: [
+      "Sporcularda ayaklar sürekli basınç, sürtünme ve nem ile karşı karşıyadır. Tırnakta kalınlaşma ve şekil değişikliği, renk değişimi, tırnağın yatağından ayrılması, batma ve hassasiyet sık görülen sorunlardır.",
+      "Podolojik değerlendirmede tırnak ve deri bakımı yapılır, basınç noktaları ve ayakkabı uyumu ele alınır. Böylece hem performans hem de ayak sağlığı korunur.",
+    ],
+    steps: ["Basınç noktaları ve ayakkabı uyumu analizi", "Tırnak ve deri bakımı", "Sürtünme bölgelerinin korunması", "Antrenmana yönelik öneriler"],
+    faq: [
+      { q: "Koşucularda tırnak morarması neden olur?", a: "Ayakkabı içinde tırnağın tekrar tekrar çarpması tırnak altında kanamaya yol açar. Doğru ayakkabı numarası ve tırnak kesimi bunu büyük ölçüde önler." },
     ],
   },
   {

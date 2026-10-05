@@ -9,11 +9,13 @@
 const env = (key: string, fallback: string) => process.env[key] || fallback;
 
 export const site = {
-  name: "Podolog Beyza Nur Daşdemir",
-  shortName: "Beyza Nur Daşdemir",
-  title: "Podolog Beyza Nur Daşdemir | Ayak Sağlığı ve Medikal Ayak Bakımı",
+  name: "Podolog Beyzanur Daşdemir",
+  shortName: "Beyzanur Daşdemir",
+  tagline: "Ayak Sağlığı Merkezi",
+  education: "İstanbul Gelişim Üniversitesi · Podoloji",
+  title: "Podolog Beyzanur Daşdemir | Darıca Ayak Sağlığı Merkezi",
   description:
-    "Podolog Beyza Nur Daşdemir ile batık tırnak, nasır, mantarlı tırnak, diyabetik ayak bakımı ve medikal pedikür. Hijyenik ortamda kişiye özel ayak sağlığı hizmeti. WhatsApp'tan hemen randevu alın.",
+    "Podolog Beyzanur Daşdemir ile Darıca, Kocaeli'de batık tırnak, nasır, tırnak mantarı, onikogrifoz, diyabetik ayak bakımı ve medikal pedikür. Hijyenik ortamda kişiye özel ayak sağlığı hizmeti. WhatsApp'tan hemen randevu alın.",
   url: env("NEXT_PUBLIC_SITE_URL", "https://www.podologbeyzanurdasdemir.com"),
   locale: "tr_TR",
   keywords: [
@@ -28,19 +30,24 @@ export const site = {
     "diyabetik ayak bakımı",
     "medikal pedikür",
     "topuk çatlağı",
-    "Beyza Nur Daşdemir",
+    "Beyzanur Daşdemir",
+    "Darıca podolog",
+    "Kocaeli podolog",
+    "Gebze podolog",
+    "onikogrifoz",
+    "sporcu ayak bakımı",
   ],
 
-  // DEMO: gerçek numara ile değiştirilecek (ülke kodu ile, boşluksuz)
-  whatsapp: env("NEXT_PUBLIC_WHATSAPP_NUMBER", "905000000000"),
-  phoneDisplay: env("NEXT_PUBLIC_PHONE_DISPLAY", "+90 500 000 00 00"),
-  email: env("NEXT_PUBLIC_EMAIL", "info@podologbeyzanurdasdemir.com"),
+  // WhatsApp numarası ülke koduyla, boşluksuz
+  whatsapp: env("NEXT_PUBLIC_WHATSAPP_NUMBER", "905417844041"),
+  phoneDisplay: env("NEXT_PUBLIC_PHONE_DISPLAY", "0541 784 40 41"),
+  email: env("NEXT_PUBLIC_EMAIL", ""),
 
-  // DEMO: adres teyit edilecek
+  // Instagram profilindeki adres (kapı numarası teyit edilecek)
   address: {
-    street: env("NEXT_PUBLIC_ADDRESS_STREET", "Adres bilgisi eklenecek"),
-    district: env("NEXT_PUBLIC_ADDRESS_DISTRICT", ""),
-    city: env("NEXT_PUBLIC_ADDRESS_CITY", "Türkiye"),
+    street: env("NEXT_PUBLIC_ADDRESS_STREET", "Tümev Plaza"),
+    district: env("NEXT_PUBLIC_ADDRESS_DISTRICT", "Darıca"),
+    city: env("NEXT_PUBLIC_ADDRESS_CITY", "Kocaeli"),
     postalCode: env("NEXT_PUBLIC_ADDRESS_POSTAL", ""),
     country: "TR",
   },
@@ -52,7 +59,7 @@ export const site = {
    * Verilmezse işletme adıyla arama yapan embed kullanılır.
    */
   maps: {
-    query: env("NEXT_PUBLIC_MAPS_QUERY", "Podolog Beyza Nur Daşdemir"),
+    query: env("NEXT_PUBLIC_MAPS_QUERY", "Tümev Plaza, Darıca, Kocaeli"),
     embedUrl: env("NEXT_PUBLIC_MAPS_EMBED_URL", ""),
     // Google İşletme profili / yorum bağlantısı
     businessUrl: env("NEXT_PUBLIC_GOOGLE_BUSINESS_URL", ""),
@@ -81,7 +88,7 @@ export const nav = [
 
 export function whatsappLink(message?: string) {
   const text =
-    message ?? "Merhaba Beyza Hanım, web sitenizden ulaşıyorum. Randevu almak istiyorum.";
+    message ?? "Merhaba Beyzanur Hanım, web sitenizden ulaşıyorum. Randevu almak istiyorum.";
   return `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(text)}`;
 }
 

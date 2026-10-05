@@ -1,7 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
+import logo from "@/assets/logo.png";
 import { fullAddress, mapsDirectionsUrl, nav, site, whatsappLink } from "@/config/site";
 import { services } from "@/content/services";
-import { ClockIcon, FootIcon, InstagramIcon, PhoneIcon, PinIcon, WhatsAppIcon } from "./Icons";
+import { ClockIcon, InstagramIcon, PhoneIcon, PinIcon, WhatsAppIcon } from "./Icons";
 
 export function Footer() {
   return (
@@ -9,10 +11,11 @@ export function Footer() {
       <div className="container-x grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <div className="flex items-center gap-2.5">
-            <span className="grid h-10 w-10 place-items-center rounded-full bg-brand text-white">
-              <FootIcon className="h-5 w-5" />
+            <Image src={logo} alt="" width={56} height={56} className="h-14 w-14 rounded-full" />
+            <span className="leading-tight">
+              <span className="block font-display text-lg font-semibold text-white">{site.shortName}</span>
+              <span className="block text-xs text-white/60">Podolog · {site.tagline}</span>
             </span>
-            <span className="font-display text-lg font-semibold text-white">{site.shortName}</span>
           </div>
           <p className="mt-4 text-sm leading-relaxed text-white/65">
             Hijyenik ortamda, kişiye özel podolojik ayak bakımı. Sağlıklı adımlar için yanınızdayız.

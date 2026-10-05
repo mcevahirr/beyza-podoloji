@@ -38,8 +38,9 @@ export function businessJsonLd() {
     description: site.description,
     url: site.url,
     image: images.hero.src,
-    telephone: site.phoneDisplay,
-    email: site.email,
+    telephone: `+${site.whatsapp}`,
+    email: site.email || undefined,
+    logo: `${site.url}/icon.svg`,
     medicalSpecialty: "Podiatric",
     address: {
       "@type": "PostalAddress",

@@ -10,8 +10,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: site.description,
     start_url: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/`,
     display: "standalone",
-    background_color: "#fbfaf7",
-    theme_color: "#2f8f83",
+    background_color: "#fbfcfe",
+    theme_color: "#24438f",
     lang: "tr",
     icons: [{ src: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/icon.svg`, sizes: "any", type: "image/svg+xml" }],
   };

@@ -2,8 +2,25 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { whatsappLink } from "@/config/site";
+import type { Img } from "@/content/media";
 import type { Service } from "@/content/services";
 import { ArrowIcon, WhatsAppIcon } from "./Icons";
+
+/** Kaplayan (cover) veya kırpmadan sığdıran (contain) görsel. Ebeveyn relative ve boyutlu olmalı. */
+export function Photo({ image, sizes, priority, className = "" }: { image: Img; sizes: string; priority?: boolean; className?: string }) {
+  const contain = image.fit === "contain";
+  return (
+    <Image
+      src={image.src}
+      alt={image.alt}
+      fill
+      sizes={sizes}
+      priority={priority}
+      placeholder={typeof image.src === "string" ? undefined : "blur"}
+      className={`${contain ? "object-contain" : "object-cover"} ${className}`}
+    />
+  );
+}
 
 export function SectionHeading({ eyebrow, title, intro, center = false }: { eyebrow?: string; title: string; intro?: ReactNode; center?: boolean }) {
   return (
@@ -44,7 +61,7 @@ export function ServiceCard({ service }: { service: Service }) {
   return (
     <Link href={`/hizmetler/${service.slug}`} className="group flex flex-col overflow-hidden rounded-3xl border border-line bg-surface transition hover:-translate-y-1 hover:shadow-xl hover:shadow-brand/10">
       <div className="relative aspect-[4/3] overflow-hidden bg-brand-soft">
-        <Image src={service.image.src} alt={service.image.alt} fill sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" className="object-cover transition duration-500 group-hover:scale-105" />
+        <Photo image={service.image} sizes="(min-width:1024px) 25vw, (min-width:640px) 50vw, 100vw" className="transition duration-500 group-hover:scale-105" />
       </div>
       <div className="flex flex-1 flex-col p-6">
         <h3 className="font-display text-xl font-semibold text-ink">{service.title}</h3>

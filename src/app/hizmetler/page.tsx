@@ -6,7 +6,7 @@ import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Hizmetler",
-  description: "Batık tırnak tedavisi, nasır bakımı, mantarlı tırnak, diyabetik ayak bakımı, medikal pedikür ve topuk çatlağı bakımı. Podolog Beyza Nur Daşdemir.",
+  description: "Darıca, Kocaeli'de batık tırnak tedavisi, nasır bakımı, tırnak mantarı, onikogrifoz, sporcu ve diyabetik ayak bakımı, medikal pedikür. Podolog Beyzanur Daşdemir.",
   path: "/hizmetler",
 });
 
@@ -32,7 +32,7 @@ export default function ServicesPage() {
         intro="Ayak sağlığınızı korumak ve mevcut sorunları ağrısız şekilde çözmek için sunduğumuz uygulamalar."
         crumbs={[{ name: "Ana Sayfa", href: "/" }, { name: "Hizmetler", href: "/hizmetler" }]}
       />
-      <section className="container-x grid gap-6 py-16 sm:grid-cols-2 lg:grid-cols-3">
+      <section className="container-x grid gap-6 py-16 sm:grid-cols-2 lg:grid-cols-4">
         {services.map((s) => <ServiceCard key={s.slug} service={s} />)}
       </section>
       <CtaBanner />

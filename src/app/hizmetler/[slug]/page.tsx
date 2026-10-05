@@ -1,10 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AppointmentForm } from "@/components/AppointmentForm";
 import { CheckIcon, WhatsAppIcon } from "@/components/Icons";
 import { JsonLd } from "@/components/JsonLd";
-import { CtaBanner, Faq, PageHero } from "@/components/ui";
+import { CtaBanner, Faq, PageHero, Photo } from "@/components/ui";
 import { site, whatsappLink } from "@/config/site";
 import { getService, services } from "@/content/services";
 import { breadcrumbJsonLd, faqJsonLd, pageMetadata } from "@/lib/seo";
@@ -19,7 +18,7 @@ export async function generateMetadata({ params }: PageProps<"/hizmetler/[slug]"
   const { slug } = await params;
   const service = getService(slug);
   if (!service) return {};
-  return pageMetadata({ title: service.title, description: service.description, path: `/hizmetler/${service.slug}`, image: service.image.src });
+  return pageMetadata({ title: service.title, description: service.description, path: `/hizmetler/${service.slug}`, image: typeof service.image.src === "string" ? service.image.src : undefined });
 }
 
 export default async function ServicePage({ params }: PageProps<"/hizmetler/[slug]">) {
@@ -40,7 +39,7 @@ export default async function ServicePage({ params }: PageProps<"/hizmetler/[slu
           name: service.title,
           description: service.description,
           url: `${site.url}${path}`,
-          image: service.image.src,
+          image: typeof service.image.src === "string" ? service.image.src : undefined,
           provider: { "@id": `${site.url}/#business` },
         }}
       />
@@ -55,8 +54,8 @@ export default async function ServicePage({ params }: PageProps<"/hizmetler/[slu
 
       <div className="container-x grid gap-12 py-16 lg:grid-cols-[1fr_380px]">
         <article>
-          <div className="relative aspect-[16/9] overflow-hidden rounded-[2rem] bg-brand-soft">
-            <Image src={service.image.src} alt={service.image.alt} fill priority sizes="(min-width:1024px) 60vw, 100vw" className="object-cover" />
+          <div className={`relative overflow-hidden rounded-[2rem] bg-brand-soft ${service.image.fit === "contain" ? "aspect-[4/3]" : "aspect-[16/9]"}`}>
+            <Photo image={service.image} priority sizes="(min-width:1024px) 60vw, 100vw" />
           </div>
           <div className="prose-clinic mt-10">
             {service.body.map((p) => <p key={p}>{p}</p>)}
@@ -84,7 +83,7 @@ export default async function ServicePage({ params }: PageProps<"/hizmetler/[slu
           <div className="rounded-3xl bg-brand p-7 text-white">
             <h2 className="font-display text-xl font-semibold">Randevu için yazın</h2>
             <p className="mt-2 text-sm text-white/80">{service.title} hakkında sorularınızı WhatsApp üzerinden iletebilirsiniz.</p>
-            <a href={whatsappLink(`Merhaba Beyza Hanım, ${service.title} hakkında bilgi almak istiyorum.`)} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-3 font-semibold text-brand-strong">
+            <a href={whatsappLink(`Merhaba Beyzanur Hanım, ${service.title} hakkında bilgi almak istiyorum.`)} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-3 font-semibold text-brand-strong">
               <WhatsAppIcon className="h-5 w-5" /> WhatsApp&apos;tan Yaz
             </a>
           </div>

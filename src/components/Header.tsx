@@ -1,10 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
+import logo from "@/assets/logo.png";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { nav, site, whatsappLink } from "@/config/site";
-import { CloseIcon, FootIcon, MenuIcon, WhatsAppIcon } from "./Icons";
+import { CloseIcon, MenuIcon, WhatsAppIcon } from "./Icons";
 
 export function Header() {
   const pathname = usePathname();
@@ -16,12 +18,10 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-line/70 bg-surface/85 backdrop-blur-md">
       <div className="container-x flex h-16 items-center justify-between gap-4 md:h-20">
         <Link href="/" className="flex items-center gap-2.5" aria-label={`${site.name} ana sayfa`}>
-          <span className="grid h-10 w-10 place-items-center rounded-full bg-brand text-white">
-            <FootIcon className="h-5 w-5" />
-          </span>
+          <Image src={logo} alt="" width={48} height={48} priority className="h-11 w-11 rounded-full ring-1 ring-line md:h-12 md:w-12" />
           <span className="leading-tight">
-            <span className="block font-display text-[15px] font-semibold text-ink md:text-base">Beyza Nur Daşdemir</span>
-            <span className="block text-xs tracking-wide text-muted">Podolog · Ayak Sağlığı</span>
+            <span className="block font-display text-[15px] font-semibold text-ink md:text-base">{site.shortName}</span>
+            <span className="block text-xs tracking-wide text-muted">Podolog · {site.tagline}</span>
           </span>
         </Link>
 

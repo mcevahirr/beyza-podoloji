@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Galeri",
-  description: "Podolog Beyza Nur Daşdemir kliniğinden kareler, uygulamalar ve Instagram paylaşımları.",
+  description: "Podolog Beyzanur Daşdemir kliniğinden kareler, uygulamalar ve Instagram paylaşımları.",
   path: "/galeri",
 });
 

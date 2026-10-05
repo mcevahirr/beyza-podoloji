@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
   await saveLead(data);
 
   const text = [
-    "Merhaba Beyza Hanım, web sitenizden randevu talebi gönderdim.",
+    "Merhaba Beyzanur Hanım, web sitenizden randevu talebi gönderdim.",
     `Ad Soyad: ${data.name}`,
     `Telefon: ${data.phone}`,
     data.service && `Hizmet: ${data.service}`,

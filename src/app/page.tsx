@@ -4,10 +4,10 @@ import { CheckIcon, ClockIcon, HeartIcon, PhoneIcon, PinIcon, ShieldIcon, SparkI
 import { InstagramGallery } from "@/components/InstagramGallery";
 import { JsonLd } from "@/components/JsonLd";
 import { MapEmbed } from "@/components/MapEmbed";
-import { CtaBanner, Faq, SectionHeading, ServiceCard } from "@/components/ui";
+import { CtaBanner, Faq, Photo, SectionHeading, ServiceCard } from "@/components/ui";
 import { fullAddress, site, whatsappLink } from "@/config/site";
 import { generalFaq } from "@/content/faq";
-import { images } from "@/content/media";
+import { beforeAfter, images } from "@/content/media";
 import { services } from "@/content/services";
 import { faqJsonLd } from "@/lib/seo";
 
@@ -41,12 +41,12 @@ export default function Home() {
         <div aria-hidden className="absolute -left-32 top-24 h-96 w-96 rounded-full bg-brand/10 blur-3xl" />
         <div className="container-x relative grid items-center gap-12 py-14 md:py-20 lg:grid-cols-[1.1fr_1fr] lg:py-24">
           <div>
-            <p className="eyebrow"><span className="h-px w-8 bg-brand" />Podolog · Ayak Sağlığı Uzmanı</p>
+            <p className="eyebrow"><span className="h-px w-8 bg-brand" />Podolog · Darıca, Kocaeli</p>
             <h1 className="mt-5 font-display text-4xl font-semibold leading-[1.1] text-ink sm:text-5xl lg:text-6xl">
               Sağlıklı ayaklar, <span className="italic text-brand">rahat adımlar.</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-              Podolog Beyza Nur Daşdemir ile batık tırnak, nasır, mantarlı tırnak ve diyabetik ayak bakımında hijyenik, ağrısız ve kişiye özel çözümler.
+              Darıca Tümev Plaza&apos;daki ayak sağlığı merkezimizde batık tırnak, nasır, tırnak mantarı, onikogrifoz ve diyabetik ayak bakımında hijyenik, ağrısız ve kişiye özel çözümler.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="btn-primary px-7 py-4 text-base">
@@ -55,7 +55,7 @@ export default function Home() {
               <Link href="/hizmetler" className="btn-outline px-7 py-4 text-base">Hizmetleri İncele</Link>
             </div>
             <ul className="mt-10 grid max-w-lg grid-cols-1 gap-3 text-sm text-ink sm:grid-cols-2">
-              {["Ameliyatsız batık tırnak tedavisi", "Otoklav ile steril aletler", "Diyabetik ayak bakımı", "Randevulu, beklemesiz hizmet"].map((t) => (
+              {["Ameliyatsız batık tırnak tedavisi", "Otoklav ile steril aletler", "Onikogrifoz ve tırnak mantarı bakımı", "Randevulu, beklemesiz hizmet"].map((t) => (
                 <li key={t} className="flex items-center gap-2.5">
                   <span className="grid h-6 w-6 place-items-center rounded-full bg-brand text-white"><CheckIcon className="h-3.5 w-3.5" /></span>{t}
                 </li>
@@ -96,21 +96,40 @@ export default function Home() {
           <SectionHeading eyebrow="Hizmetler" title="Ayak sağlığınız için podolojik çözümler" intro="Her uygulama ayak analizi ile başlar ve ihtiyacınıza göre planlanır." />
           <Link href="/hizmetler" className="btn-outline self-start md:self-auto">Tüm hizmetler</Link>
         </div>
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((s) => <ServiceCard key={s.slug} service={s} />)}
         </div>
       </section>
 
+      {/* BEFORE / AFTER */}
+      <section className="container-x py-20">
+        <SectionHeading center eyebrow="Önce / Sonra" title="Gerçek danışanlar, gerçek sonuçlar" intro="Kliniğimizde uygulanan bakımlardan bazı sonuçlar." />
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {beforeAfter.map((b) => (
+            <Link key={b.slug} href={`/hizmetler/${b.slug}`} className="group overflow-hidden rounded-3xl border border-line bg-surface transition hover:-translate-y-1 hover:shadow-xl hover:shadow-brand/10">
+              <div className="relative aspect-[3/4] bg-brand-soft">
+                <Photo image={b.image} sizes="(min-width:768px) 33vw, 100vw" />
+              </div>
+              <div className="p-6">
+                <h3 className="font-display text-xl font-semibold text-ink">{b.title}</h3>
+                <p className="mt-1 text-sm text-muted">{b.text}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       {/* ABOUT */}
-      <section className="mt-16 bg-sand py-20">
+      <section className="bg-sand py-20">
         <div className="container-x grid items-center gap-12 lg:grid-cols-2">
           <div className="relative aspect-[5/4] overflow-hidden rounded-[2rem] bg-blush">
             <Image src={images.care.src} alt={images.care.alt} fill sizes="(min-width:1024px) 50vw, 100vw" className="object-cover" />
           </div>
           <div>
-            <SectionHeading eyebrow="Hakkımda" title="Merhaba, ben Beyza Nur Daşdemir" />
+            <SectionHeading eyebrow="Hakkımda" title="Merhaba, ben Beyzanur Daşdemir" />
+            <p className="mt-3 text-sm font-semibold text-brand">{site.education}</p>
             <div className="prose-clinic mt-6">
-              <p>Podolog olarak amacım, ayak sağlığı sorunlarınıza bilimsel, hijyenik ve konforlu çözümler sunmak. Her danışanımı dinleyerek, ayak yapısını ve yaşam alışkanlıklarını değerlendirerek kişiye özel bir bakım planı oluşturuyorum.</p>
+              <p>İstanbul Gelişim Üniversitesi Podoloji bölümü mezunuyum. Podolog olarak amacım, ayak sağlığı sorunlarınıza bilimsel, hijyenik ve konforlu çözümler sunmak. Her danışanımı dinleyerek, ayak yapısını ve yaşam alışkanlıklarını değerlendirerek kişiye özel bir bakım planı oluşturuyorum.</p>
               <p>Batık tırnaktan diyabetik ayağa kadar pek çok sorunda erken ve doğru müdahalenin hayat kalitesini nasıl değiştirdiğini her gün görüyorum.</p>
             </div>
             <Link href="/hakkimda" className="btn-primary mt-8">Daha fazla bilgi</Link>
