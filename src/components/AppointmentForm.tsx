@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
+import { whatsappLink } from "@/config/site";
 import { services } from "@/content/services";
 import { WhatsAppIcon } from "./Icons";
 
@@ -26,6 +27,31 @@ export function AppointmentForm({ defaultService = "" }: { defaultService?: stri
 
     setStatus({ state: "sending" });
     setErrors({});
+
+    // Statik demo yayınında API yoktur: mesaj doğrudan WhatsApp'a gönderilir.
+    if (process.env.NEXT_PUBLIC_STATIC_EXPORT === "1") {
+      if (String(payload.name).trim().length < 2 || String(payload.phone).replace(/\D/g, "").length < 10 || !payload.consent) {
+        setErrors({
+          ...(String(payload.name).trim().length < 2 ? { name: "Lütfen adınızı ve soyadınızı yazın." } : {}),
+          ...(String(payload.phone).replace(/\D/g, "").length < 10 ? { phone: "Geçerli bir telefon numarası girin." } : {}),
+          ...(!payload.consent ? { consent: "KVKK metnini onaylamanız gerekiyor." } : {}),
+        });
+        setStatus({ state: "error", message: "Lütfen formu kontrol edin." });
+        return;
+      }
+      const text = [
+        "Merhaba Beyza Hanım, web sitenizden randevu talebi gönderdim.",
+        `Ad Soyad: ${payload.name}`,
+        `Telefon: ${payload.phone}`,
+        payload.service && `Hizmet: ${payload.service}`,
+        payload.message && `Not: ${payload.message}`,
+      ].filter(Boolean).join("\n");
+      form.reset();
+      setStatus({ state: "done", message: "Randevunuzu netleştirmek için WhatsApp açılıyor." });
+      window.open(whatsappLink(text), "_blank", "noopener,noreferrer");
+      return;
+    }
+
     try {
       const res = await fetch("/api/appointment", {
         method: "POST",
