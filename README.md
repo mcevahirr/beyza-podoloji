@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Podolog Beyza Nur Daşdemir · Klinik Web Sitesi (Demo)
 
-## Getting Started
+Next.js 16 (App Router) + TypeScript + Tailwind CSS v4 ile hazırlanmış, SEO uyumlu klinik tanıtım sitesi.
+Satış yok; tüm dönüşümler WhatsApp'a yönlenir.
 
-First, run the development server:
+## Çalıştırma
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+cp .env.example .env.local   # bilgileri doldurun
+npm run dev                  # http://localhost:3000
+npm run build && npm start   # üretim
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Güncellenecek yerler (DEMO işaretli)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Ne | Nerede |
+|---|---|
+| WhatsApp / telefon / e-posta / adres | `.env.local` veya `src/config/site.ts` |
+| Google Haritalar embed + Google İşletme linki | `NEXT_PUBLIC_MAPS_EMBED_URL`, `NEXT_PUBLIC_GOOGLE_BUSINESS_URL` |
+| Çalışma saatleri | `src/config/site.ts` → `hours` |
+| Görseller ve Instagram galerisi | `src/content/media.ts` (Instagram fotoğraflarını `public/images/` altına koyun) |
+| Hizmet metinleri | `src/content/services.ts` |
+| SSS | `src/content/faq.ts` |
+| Danışan yorumları (örnek metinler) | `src/app/page.tsx` → `testimonials` |
+| Hakkımda / sertifikalar | `src/app/hakkimda/page.tsx` |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Yapı
 
-## Learn More
+```
+src/
+  app/                 sayfalar (/, /hizmetler, /hizmetler/[slug], /hakkimda, /galeri, /sss, /iletisim, /kvkk)
+    api/appointment    randevu talebi API (zod doğrulama, hız sınırı, bot tuzağı → WhatsApp yönlendirme)
+    api/health         sağlık kontrolü
+    sitemap.ts robots.ts manifest.ts opengraph-image.tsx icon.svg
+  components/          Header, Footer, WhatsAppFloat, MapEmbed, InstagramGallery, AppointmentForm, ui
+  config/site.ts       klinik bilgilerinin tek kaynağı
+  content/             hizmetler, SSS, görseller
+  lib/                 SEO yardımcıları (JSON-LD), doğrulama şeması, rate limit
+  server/leads.ts      randevu kaydı (webhook + JSONL dosya; veritabanına geçiş noktası)
+```
 
-To learn more about Next.js, take a look at the following resources:
+## SEO
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Sayfa bazlı title/description/canonical/Open Graph, otomatik OG görseli
+- JSON-LD: MedicalBusiness/LocalBusiness, MedicalProcedure, FAQPage, BreadcrumbList, Person
+- `sitemap.xml`, `robots.txt`, web manifest, statik üretilen sayfalar (SSG)
+- Demo yayınında indekslemeyi kapatmak için `NEXT_PUBLIC_NOINDEX=1`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Randevu talepleri
 
-## Deploy on Vercel
+Form `/api/appointment`'a gider; geçerliyse talep kaydedilir ve kullanıcı ön doldurulmuş mesajla WhatsApp'a yönlenir.
+`LEAD_WEBHOOK_URL` ile talepler Make/Zapier/n8n üzerinden e-posta, Google Sheets vb.'ye aktarılabilir.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Yayınlama
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Vercel'e doğrudan bağlanabilir (önerilen) veya `npm run build && npm start` ile herhangi bir Node 20+ sunucusunda çalışır.
